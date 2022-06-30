@@ -144,9 +144,13 @@ export class BicepVisualizerView extends Disposable {
       return;
     }
 
-    this.webviewPanel.webview.postMessage(
-      createDeploymentGraphMessage(this.documentUri.fsPath, deploymentGraph)
-    );
+    try {
+      this.webviewPanel.webview.postMessage(
+        createDeploymentGraphMessage(this.documentUri.fsPath, deploymentGraph)
+      );
+    } catch (error: unknown) {
+      // Ignore potential "Error: Unknown webview handle" on macOS.
+    }
   }
 
   private handleDidReceiveMessage(message: Message): void {
