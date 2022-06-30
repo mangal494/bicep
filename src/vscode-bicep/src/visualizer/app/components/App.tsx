@@ -95,13 +95,7 @@ export const App: VFC = () => {
 
   useEffect(() => {
     window.addEventListener("message", handleMessageEvent);
-
-    try {
-      vscode.postMessage(READY_MESSAGE);
-    } catch {
-      // Ignore potential "Error: Unknown webview handle" on macOS.
-    }
-
+    vscode.postMessage(READY_MESSAGE);
     return () => window.removeEventListener("message", handleMessageEvent);
   }, []);
 

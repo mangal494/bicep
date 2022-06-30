@@ -6,7 +6,11 @@ import * as vscode from "vscode";
 // More can be added as needed: https://code.visualstudio.com/api/references/commands.
 
 export async function executeCloseAllEditors(): Promise<void> {
-  await vscode.commands.executeCommand("workbench.action.closeAllEditors");
+  try {
+    await vscode.commands.executeCommand("workbench.action.closeAllEditors");
+  } catch (error: unknown) {
+    console.log((error as Error).message ?? error);
+  }
 }
 
 export async function executeHoverProvider(
@@ -64,7 +68,12 @@ export async function executeShowVisualizerToSideCommand(
 export async function executeShowSourceCommand(): Promise<
   vscode.TextEditor | undefined
 > {
-  return await vscode.commands.executeCommand("bicep.showSource");
+  try {
+    return await vscode.commands.executeCommand("bicep.showSource");
+  } catch (error: unknown) {
+    console.log((error as Error).message ?? error);
+    return undefined;
+  }
 }
 
 export async function executeBuildCommand(

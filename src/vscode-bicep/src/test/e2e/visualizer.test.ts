@@ -64,7 +64,7 @@ describe("visualizer", (): void => {
   it("should open source", async () => {
     expect(vscode.window.activeTextEditor).toBeUndefined();
 
-    const examplePath = resolveExamplePath("files", "invalid-resources");
+    const examplePath = resolveExamplePath("000", "empty");
     const document = await vscode.workspace.openTextDocument(examplePath);
 
     await executeShowVisualizerToSideCommand(document.uri);
