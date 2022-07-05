@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: Bicep-StorageAccount-PrivateEndpoint
+
+trigger:
+- main
+
+variables:
+  resourceGroupName: 'example'
+  location: 'westeurope'
+  azureSubscription: 'AzureConnection'
+  resourcePrefix: 'bicep'
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
